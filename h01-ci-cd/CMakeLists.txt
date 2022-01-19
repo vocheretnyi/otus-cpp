@@ -8,3 +8,5 @@ if (ENABLE_TESTING)
 #    target_compile_definitions(h01-tests PUBLIC -DRESOURCES_PATH="${RESOURCES_PATH}")
     add_test(h01-tests h01-tests)
 endif()
+
+install(TARGETS h01 RUNTIME DESTINATION bin)
