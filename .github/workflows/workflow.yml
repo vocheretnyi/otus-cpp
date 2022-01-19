@@ -15,6 +15,7 @@ jobs:
       - run: sudo apt-get update
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
+      - run: cmake --build . --target test
       - run: cmake --build . --target package
       - name: Create Release
         id: create_release

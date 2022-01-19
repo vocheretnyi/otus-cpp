@@ -7,14 +7,16 @@ message("PROJECT_VERSION: ${PROJECT_VERSION}")
 
 project(otus-cpp VERSION ${PROJECT_VERSION})
 
-# Options
+# options
 option(ENABLE_TESTING "Whether to build test" ON)
 if (ENABLE_TESTING)
     enable_testing()
 endif()
 
+# include libs dir
 add_subdirectory(libs)
 
+# include homeworks
 add_subdirectory(h01-ci-cd)
 
 # package
