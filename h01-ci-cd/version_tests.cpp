@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 
 TEST(version, basic_test) {
-    ASSERT_TRUE(PATCH_VERSION < 0);
+    ASSERT_TRUE(PATCH_VERSION > 0);
 }
 
 int main(int argc, char **argv) {
