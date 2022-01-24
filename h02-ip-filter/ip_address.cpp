@@ -1,6 +1,7 @@
 #include "ip_address.hpp"
 
 #include <sstream>
+#include <tuple>
 
 IPAddress::IPAddress() : bytes() {
 }
