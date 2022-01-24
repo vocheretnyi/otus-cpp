@@ -7,17 +7,22 @@ message("PROJECT_VERSION: ${PROJECT_VERSION}")
 
 project(otus-cpp VERSION ${PROJECT_VERSION})
 
+set(CMAKE_CXX_STANDARD 17)
+
 # options
 option(ENABLE_TESTING "Whether to build test" ON)
 if (ENABLE_TESTING)
     enable_testing()
 endif()
 
+add_compile_options(-Wall -Wextra -pedantic -Werror)
+
 # include libs dir
 add_subdirectory(libs)
 
 # include homeworks
 add_subdirectory(h01-ci-cd)
+add_subdirectory(h02-ip-filter)
 
 # package
 set(CPACK_GENERATOR DEB)
