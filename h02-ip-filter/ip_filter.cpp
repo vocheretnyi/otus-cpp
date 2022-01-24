@@ -8,26 +8,28 @@
 #include "ip_address.hpp"
 #include "ip_filter.hpp"
 
-std::vector<IPAddress> ReadIPsFromInput(std::istream& in) {
-    std::vector<IPAddress> ipAddresses;
-    std::string line;
-    while (getline(in, line)) {
-        std::string part;
-        std::stringstream lineStream(line);
-        std::vector<std::string> parts;
-        while (getline(lineStream, part, '\t')) {
-            parts.push_back(part);
+namespace {
+    std::vector<IPAddress> ReadIPsFromInput(std::istream& in) {
+        std::vector<IPAddress> ipAddresses;
+        std::string line;
+        while (getline(in, line)) {
+            std::string part;
+            std::stringstream lineStream(line);
+            std::vector<std::string> parts;
+            while (getline(lineStream, part, '\t')) {
+                parts.push_back(part);
+            }
+            ipAddresses.emplace_back(parts[0]);
         }
-        ipAddresses.emplace_back(parts[0]);
+        return ipAddresses;
     }
-    return ipAddresses;
-}
 
-void PrintIpAddressesList(std::ostream& out, const std::vector<IPAddress>& ipAddresses) {
-    for (auto& ip : ipAddresses) {
-        out << ip << "\n";
+    void PrintIpAddressesList(std::ostream& out, const std::vector<IPAddress>& ipAddresses) {
+        for (auto& ip : ipAddresses) {
+            out << ip << "\n";
+        }
     }
-}
+}  // namespace
 
 void Solve(std::istream& in, std::ostream& out) {
     auto ipAddresses = ReadIPsFromInput(in);

@@ -6,6 +6,9 @@
 IPAddress::IPAddress() : bytes() {
 }
 
+IPAddress::IPAddress(std::array<uint8_t, kIP_BYTES_COUNT> bytesIn) : bytes(bytesIn) {
+}
+
 IPAddress::IPAddress(const std::string& ipAddressString) {
     *this = ParseString(ipAddressString);
 }
@@ -40,9 +43,6 @@ IPAddress IPAddress::ParseString(const std::string& ipAddressString) {
     }
 
     return ipAddress;
-}
-
-IPAddress::IPAddress(std::array<uint8_t, kIP_BYTES_COUNT> bytesIn) : bytes(bytesIn) {
 }
 
 std::ostream& operator<<(std::ostream& out, const IPAddress& ip) {

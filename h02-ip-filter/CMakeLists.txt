@@ -1,17 +1,17 @@
 set(CMAKE_CXX_STANDARD 20)
+
 set(RESOURCES_PATH ${CMAKE_CURRENT_SOURCE_DIR}/rsc)
 
+# create Ip Filter library.
 add_library(ip_filter ip_address.cpp ip_filter.cpp)
-message(${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(ip_filter PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-add_executable(h02 main.cpp)
-target_compile_definitions(h02 PUBLIC -DRESOURCES_PATH="${RESOURCES_PATH}")
-
-# TODO: change, as personal mac specific
+# Finding OpenSSL.
 set(OPENSSL_ROOT_DIR "/usr/local/opt/openssl")
 find_package(OpenSSL REQUIRED)
 
+add_executable(h02 main.cpp)
+target_compile_definitions(h02 PUBLIC -DRESOURCES_PATH="${RESOURCES_PATH}")
 target_link_libraries(h02 PRIVATE ip_filter)
 
 if (ENABLE_TESTING)
