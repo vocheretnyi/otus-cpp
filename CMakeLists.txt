@@ -24,6 +24,9 @@ add_subdirectory(libs)
 add_subdirectory(h01-ci-cd)
 add_subdirectory(h02-ip-filter)
 
+# include directory with timus problems
+add_subdirectory(timus)
+
 # package
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
