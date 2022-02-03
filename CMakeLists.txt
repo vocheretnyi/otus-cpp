@@ -25,7 +25,7 @@ add_subdirectory(h01-ci-cd)
 add_subdirectory(h02-ip-filter)
 
 # include directory with timus problems
-add_subdirectory(timus)
+add_subdirectory(timus EXCLUDE_FROM_ALL)
 
 # package
 set(CPACK_GENERATOR DEB)
