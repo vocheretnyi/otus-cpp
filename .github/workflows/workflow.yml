@@ -20,7 +20,7 @@ jobs:
           version: 11
           platform: x64
       - run: pip install cpplint
-      - run: cpplint --filter=-legal/copyright --exclude="libs/googletest" --exclude="cmake-build-*" --linelength=120 --recursive .
+      - run: cpplint --filter=-legal/copyright --exclude="timus" --exclude="libs/googletest" --exclude="cmake-build-*" --linelength=120 --recursive .
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
       - run: cmake --build . --target test
