@@ -14,6 +14,8 @@ add_executable(h02 main.cpp)
 target_compile_definitions(h02 PUBLIC -DRESOURCES_PATH="${RESOURCES_PATH}")
 target_link_libraries(h02 PRIVATE ip_filter)
 
+install(TARGETS h02 RUNTIME DESTINATION bin)
+
 if (ENABLE_TESTING)
     add_executable(ip_filer_tests ip_filer_tests.cpp)
     target_link_libraries(ip_filer_tests PRIVATE gtest ip_filter OpenSSL::SSL)
