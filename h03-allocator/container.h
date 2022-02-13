@@ -39,7 +39,7 @@ class MyList {
         m_size++;
         T* data = m_alloc.allocate(1);
         *data = std::move(val);
-        Node* node = new Node(data);
+        Node* node = new Node(data); // TODO: Hh-m? Is it possible to use MyAlloc? Allocator::rebind::other doesn't work
 
         if (!m_head) {
             m_head = m_tail = node;

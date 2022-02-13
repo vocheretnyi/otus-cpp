@@ -31,9 +31,9 @@ struct MyAllocator {
 
     ~MyAllocator() {
         for (auto curNode = m_listNodeHead; curNode != nullptr;) {
-//            delete[] curNode->buffer;
+            std::free(curNode->buffer);
             auto next = curNode->next;
-            delete curNode;
+            std::free(curNode);
             curNode = next;
         }
     }
@@ -59,7 +59,7 @@ struct MyAllocator {
 
 private:
     void allocateNewChunk() {
-        auto* newNode = new LinkedListNode;
+        auto* newNode = reinterpret_cast<LinkedListNode*>(malloc(sizeof(LinkedListNode)));
         if (!newNode) {
             throw std::bad_alloc();
         }

@@ -1,6 +1,6 @@
-#set(CMAKE_CXX_STANDARD 17)
-
-add_executable(h03 main.cpp)
+#add_executable(h03 main.cpp)
+#
+#install(TARGETS h03 RUNTIME DESTINATION bin)
 
 if (ENABLE_TESTING)
     add_executable(allocator_tests allocator_tests.cpp)
