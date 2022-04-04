@@ -25,6 +25,7 @@ add_subdirectory(h01-ci-cd)
 add_subdirectory(h02-ip-filter)
 add_subdirectory(h03-allocator)
 add_subdirectory(h04-sfinae)
+add_subdirectory(h06-matrix)
 
 # include directory with timus problems
 add_subdirectory(timus EXCLUDE_FROM_ALL)
