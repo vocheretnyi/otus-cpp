@@ -37,6 +37,8 @@ jobs:
         with:
           version: 11
           platform: x64
+      - name: Install Boost
+        run: sudo apt-get install -y libboost-all-dev
       - run: pip install cpplint
 #      - run: cpplint --filter=-legal/copyright --exclude="timus" --exclude="libs/googletest" --exclude="cmake-build-*" --linelength=120 --recursive .
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
