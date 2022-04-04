@@ -27,7 +27,6 @@ TEST(Hash, StdUnorderedMapWithArray) {
     ASSERT_EQ(hashtable.size(), 2);
     ASSERT_TRUE(hashtable.count({1, 2, 3}));
     ASSERT_FALSE(hashtable.count({3, 2, 1}));
-    ASSERT_EQ(hashtable.bucket_count(), 2);
     hashtable[{1, 2, 3}] = 3;
     ASSERT_EQ((hashtable[{1, 2, 3}]), 3);
     ASSERT_EQ((hashtable[{1, 3, 2}]), 2);
