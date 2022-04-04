@@ -9,14 +9,28 @@
 #include <boost/container_hash/hash.hpp>
 
 namespace std {
+/**
+ * @brief std::hash definition for the std::array
+ * @details implemented using boost::hash_range from boost/container_hash/hash.hpp
+ * @tparam T Array's elements type
+ * @tparam N Size of the array
+ * @param arr Array
+ */
     template<typename T, size_t N>
     struct hash<std::array<T, N>> {
         std::size_t operator()(const std::array<T, N>& arr) const {
             return boost::hash_range(arr.begin(), arr.end());
         }
     };
-}
+}  // namespace std
 
+/**
+ * @brief Matrix class for sparse matrix case
+ * @details Supports multidimensional usage
+ * @tparam T Type of elements
+ * @tparam DefaultValue Default value of elements, by default T{}
+ * @tparam Dimension Dimension of the matrix, by default 2
+ */
 template<typename T, T DefaultValue = T{}, size_t Dimension = 2>
 class Matrix {
  private:
@@ -37,10 +51,20 @@ class Matrix {
         return cells.size();
     }
 
+/**
+ * @brief Returns iterator on first element which is not equal to default value
+ * @details Working in range based for
+ * @return std::unordered_map<std::array<index_type, Dimension>, T>::iterator
+ */
     auto begin() {
         return cells.begin();
     }
 
+/**
+ * @brief Returns iterator on the element after last which is not equal to default value
+ * @details Working in range based for
+ * @return std::unordered_map<std::array<index_type, Dimension>, T>::iterator
+ */
     auto end() {
         return cells.end();
     }
@@ -55,11 +79,22 @@ class Matrix {
     std::unordered_map<std::array<index_type, Dimension>, T> cells;
 };
 
+/**
+ * @brief Proxy class which allows accessing to matrix cells
+ * @details Have implicit cast operator to T
+ * @tparam T Type of elements
+ * @tparam DefaultValue Default value of elements, by default T{}
+ * @tparam Dimension Dimension of the matrix, by default 2
+ */
 template<typename T, T DefaultValue, size_t Dimension>
 class Matrix<T, DefaultValue, Dimension>::ProxyCellAccessor {
     friend Matrix;
 
  public:
+/**
+ * @brief Implicit typecasting operator, so we can use ProxyCellAccessor as T.
+ * @throws std::out_of_range Thrown if number of accessed dimensions not equal to Dimension
+ */
     operator T() const noexcept(false) {
         if (depth != Dimension) {
             throw std::out_of_range("You can work with intermediate dimension.");
@@ -72,6 +107,9 @@ class Matrix<T, DefaultValue, Dimension>::ProxyCellAccessor {
         }
     }
 
+/**
+ * @throws std::out_of_range Thrown if number of accessed dimensions not equal to Dimension
+ */
     ProxyCellAccessor& operator=(const T& other) noexcept(false) {
         if (depth != Dimension) {
             throw std::out_of_range("You can work with intermediate dimension.");
@@ -94,6 +132,11 @@ class Matrix<T, DefaultValue, Dimension>::ProxyCellAccessor {
         this->operator=(default_value);
     }
 
+/**
+ * @brief Allows access to matrix
+ * @details Implemented via recursion and populating std::array with indexes
+ * @throws std::out_of_range Thrown if number of accessed dimensions more than Dimensions
+ */
     ProxyCellAccessor& operator[](index_type index) noexcept(false) {
         if (depth >= Dimension) {
             throw std::out_of_range("You've used more dimensions than expected");
