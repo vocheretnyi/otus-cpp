@@ -43,7 +43,8 @@ jobs:
 #      - run: cpplint --filter=-legal/copyright --exclude="timus" --exclude="libs/googletest" --exclude="cmake-build-*" --linelength=120 --recursive .
       - run: cmake . -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
-      - run: cmake --build . --target test
+      - run: ctest -V
+#      - run: cmake --build . --target test
       - run: cmake --build . --target package
       - name: Create Release
         id: create_release
