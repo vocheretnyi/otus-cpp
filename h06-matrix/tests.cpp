@@ -155,10 +155,9 @@ TEST(Matrix, RangeBasedFor) {
     std::vector<std::tuple<size_t, size_t, int>> elements;
     for (auto cell : matrix) {
         std::array<size_t, 2> indexes{};
-        size_t row, column;
         int value;
         std::tie(indexes, value) = cell;
-        std::tie(row, column) = indexes;
+        auto [row, column] = indexes;
         elements.emplace_back(row, column, value);
     }
     std::sort(elements.begin(), elements.end());

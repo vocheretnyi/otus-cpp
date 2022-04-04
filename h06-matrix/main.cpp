@@ -23,10 +23,9 @@ int main() {
     std::cout << "Matrix setted non-default cells:\n";
     for (auto cell : matrix) {
         std::array<size_t, 2> indexes{};
-        size_t row, column;
         int value;
         std::tie(indexes, value) = cell;
-        std::tie(row, column) = indexes;
+        auto [row, column] = indexes;
         std::cout << row << ' ' << column << ' ' << value << "\n";
     }
 
